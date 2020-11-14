@@ -15,6 +15,7 @@ fetch('http://api.aladhan.com/v1/timingsByCity?city=London&country=United%20King
   document.getElementById('T_Sunrise').innerHTML = pts.Sunrise
   document.getElementById('T_Dhuhr').innerHTML = pts.Dhuhr
   document.getElementById('T_Asr').innerHTML = pts.Asr
+  document.getElementById('T_Sunset').innerHTML = pts.Sunset
   document.getElementById('T_Maghrib').innerHTML = pts.Maghrib
   document.getElementById('T_Isha').innerHTML = pts.Isha
   // gregorian

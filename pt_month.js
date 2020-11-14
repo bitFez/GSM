@@ -9,12 +9,12 @@ fetch('http://api.aladhan.com/v1/calendarByCity?city=London&country=United%20Kin
   var month = pts[0]['date']['gregorian']['month']['en'];
   //console.log(month);
   mytable = '<table class="table"><thead class=" thead-light"><tr><th scope="col">'+month+'</th>';
-  mytable += '<th scope="col">Fajr</th>';
+  mytable += '<th scope="col">Fajr <img src="images/sunrise.png" width="15px" alt="Fajr"></th>';
   mytable += '<th scope="col">Sunrise</th>';
-  mytable += '<th scope="col">Dhuhr</th>';
-  mytable += '<th scope="col">Asr</th>';
-  mytable += '<th scope="col">Maghrib</th>';
-  mytable += '<th scope="col">Isha</th></tr></thead><tbody>';
+  mytable += '<th scope="col">Dhuhr <img src="images/sun.png" width="15px" alt="Dhuhr"></th>';
+  mytable += '<th scope="col">Asr <img src="images/sunset.png" width="15px" alt="Asr"></th>';
+  mytable += '<th scope="col">Maghrib <img src="images/moonrise.png" width="15px" alt="Maghrib"></th>';
+  mytable += '<th scope="col">Isha <img src="images/night.png" width="15px" alt="Isha"></th></tr></thead><tbody>';
 
   var today = new Date();
   var today_date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
