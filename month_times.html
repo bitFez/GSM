@@ -51,7 +51,7 @@
       for (var i = 1; i < 12; i++) {
           var next = new Date(curr.getTime());
           next.setMonth(first + i);
-          options += '<option>' + formatMonth(next.toString()) + '</option>';
+          options += '<option value='+ +'>' + formatMonth(next.toString()) + '</option>';
       }
       $("#datemenu1").append(options);
     </script>

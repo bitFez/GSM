@@ -1,51 +1,87 @@
 
-//Daily times
-fetch('http://api.aladhan.com/v1/calendarByCity?city=London&country=United%20Kingdom&method=2&school=1')
-.then(function (response) {
-  return response.json();
-})
-.then(function (data) {
-  pts = data['data'];
-  var month = pts[0]['date']['gregorian']['month']['en'];
-  //console.log(month);
-  mytable = '<table class="table"><thead class=" thead-light"><tr><th scope="col">'+month+'</th>';
-  mytable += '<th scope="col">Fajr <img src="images/sunrise.png" width="15px" alt="Fajr"></th>';
-  mytable += '<th scope="col">Sunrise</th>';
-  mytable += '<th scope="col">Dhuhr <img src="images/sun.png" width="15px" alt="Dhuhr"></th>';
-  mytable += '<th scope="col">Asr <img src="images/sunset.png" width="15px" alt="Asr"></th>';
-  mytable += '<th scope="col">Maghrib <img src="images/moonrise.png" width="15px" alt="Maghrib"></th>';
-  mytable += '<th scope="col">Isha <img src="images/night.png" width="15px" alt="Isha"></th></tr></thead><tbody>';
+  detay = "http://www.londonprayertimes.com/api/times/?format=json&year=2020&month=November&key=2faaa5a2-496f-485c-aa26-af5c30a83adb"
+  fetch(detay)
+  .then(function (response){
+      return response.json();
+  })
+  .then(function (json){
+    var pts = json['times'];
+    console.log(pts);
+    days_in_the_month = Object.keys(pts).length;
 
-  var today = new Date();
-  var today_date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-  //console.log(today_date)
-  let newday = '';
-  for(var i = 0; i < pts.length; i++) {
-    var obj = pts[i];
-    var day = obj['date']['gregorian']['day'];
-    var fajr = obj['timings']['Fajr'];
-    var sun = obj['timings']['Sunrise'];
-    var dhu = obj['timings']['Dhuhr'];
-    var asr = obj['timings']['Asr'];
-    var mag = obj['timings']['Maghrib'];
-    var ish = obj['timings']['Isha'];
-    if (obj['date']['gregorian']['date']==today_date){
-      newday = "<tr class='table-active'><td>"+day+"</td><td>"+fajr+"</td><td>"+sun+"</td><td>"+dhu+"</td><td>"+asr+"</td><td>"+mag+"</td><td>"+ish+"</td></tr>";
-    }else if (obj['date']['gregorian']['weekday']['en']=='Friday') {
-      newday = "<tr class='table-warning'><td>"+day+"</td><td>"+fajr+"</td><td>"+sun+"</td><td>"+dhu+"</td><td>"+asr+"</td><td>"+mag+"</td><td>"+ish+"</td></tr>";
-    }else{
-    newday = "<tr><td>"+day+"</td><td>"+fajr+"</td><td>"+sun+"</td><td>"+dhu+"</td><td>"+asr+"</td><td>"+mag+"</td><td>"+ish+"</td></tr>";
+    var today = new Date();
+    var today_date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    //console.log(today_date);
+    console.log();
+    
+    var tmonth = new Array(12);
+    tmonth[0] = "January";
+    tmonth[1] = "February";
+    tmonth[2] = "March";
+    tmonth[3] = "April";
+    tmonth[4] = "May";
+    tmonth[5] = "June";
+    tmonth[6] = "July";
+    tmonth[7] = "August";
+    tmonth[8] = "September";
+    tmonth[9] = "October";
+    tmonth[10] = "November";
+    tmonth[11] = "December";
+
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+    var month = tmonth[today.getMonth()];
+    var bugun = weekday[today.getDay()];
+    //console.log(month);
+    mytable = '<table class="table"><thead class=" thead-light"><tr><th scope="col">'+ month +'</th>';
+    mytable += '<th scope="col">Fajr <img src="images/sunrise.png" width="15px" alt="Fajr"></th>';
+    mytable += '<th scope="col">Sunrise</th>';
+    mytable += '<th scope="col">Dhuhr <img src="images/sun.png" width="15px" alt="Dhuhr"></th>';
+    mytable += '<th scope="col">Asr <img src="images/sunset.png" width="15px" alt="Asr"></th>';
+    mytable += '<th scope="col">Maghrib <img src="images/moonrise.png" width="15px" alt="Maghrib"></th>';
+    mytable += '<th scope="col">Isha <img src="images/night.png" width="15px" alt="Isha"></th></tr></thead><tbody>';
+    //console.log(pts)
+    let newday = '';
+    
+    for(var i = 0; i < days_in_the_month; i++) {
+      day = (i+1).toString();
+      //console.log(day);
+      if (day.length<2){day='0'+day}
+      //console.log(day)
+      var gun = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+day.toString();
+      //console.log(gun);
+      var obj = pts[gun];
+      //console.log(obj);
+      var fajr = obj['fajr'];
+      var sun = obj['sunrise'];
+      var dhu = obj['dhuhr'];
+      var asr = obj['asr'];
+      var mag = obj['magrib'];
+      var ish = obj['isha'];
+      //console.log(today_date)
+      if (obj['date']==today_date){
+        newday = "<tr class='table-active'><td>"+(i+1)+"</td><td>"+fajr+"</td><td>"+sun+"</td><td>"+dhu+"</td><td>"+asr+"</td><td>"+mag+"</td><td>"+ish+"</td></tr>";
+      }else if (weekday[today.getDay()]=='Friday') {
+        newday = "<tr class='table-warning'><td>"+(i+1)+"</td><td>"+fajr+"</td><td>"+sun+"</td><td>"+dhu+"</td><td>"+asr+"</td><td>"+mag+"</td><td>"+ish+"</td></tr>";
+      }else{
+      newday = "<tr><td>"+(i+1)+"</td><td>"+fajr+"</td><td>"+sun+"</td><td>"+dhu+"</td><td>"+asr+"</td><td>"+mag+"</td><td>"+ish+"</td></tr>";
+      }
+      mytable += newday;
+
+      //console.log(newday)
+      //document.getElementById('timings_row').innerHTML = newday
+      //console.log(obj);
     }
-    mytable += newday;
+    mytable += "</tbody></table>";
+    document.getElementById('mytable').innerHTML = mytable;
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
 
-    console.log(fajr)
-    //document.getElementById('timings_row').innerHTML = newday
-    //console.log(obj);
-  }
-  mytable += "</tbody></table>";
-  document.getElementById('mytable').innerHTML = mytable;
-})
-
-.catch(function (err) {
-  console.log(err);
-});
