@@ -39,13 +39,14 @@
     var month = tmonth[today.getMonth()];
     var bugun = weekday[today.getDay()];
     //console.log(month);
-    mytable = '<table class="table"><thead class=" thead-light"><tr><th scope="col">'+ month +'</th>';
+    mytable = '<table class="table text-center"><thead class=" thead-light"><tr><th scope="col">'+ month +'</th>';
     mytable += '<th scope="col" colspan="2">Fajr <img src="images/sunrise.png" width="15px" alt="Fajr"></th>';
     mytable += '<th scope="col">Sunrise</th>';
     mytable += '<th scope="col" colspan="2">Dhuhr <img src="images/sun.png" width="15px" alt="Dhuhr"></th>';
     mytable += '<th scope="col" colspan="2">Asr <img src="images/sunset.png" width="15px" alt="Asr"></th>';
     mytable += '<th scope="col" colspan="2">Maghrib <img src="images/moonrise.png" width="15px" alt="Maghrib"></th>';
     mytable += '<th scope="col" colspan="2">Isha <img src="images/night.png" width="15px" alt="Isha"></th></tr></thead><tbody>';
+    //mytable += "<tr class='table-active'><td></td><td><img src='images/adhan-call.png'><br>START</img></td><td><img src='images/group.png'><br>Jamaah</img></td><td></td><td><img src='images/adhan-call.png'></img></td><td><img src='images/group.png'></img></td><td><img src='images/adhan-call.png'></img></td><td><img src='images/group.png'></img></td><td><img src='images/adhan-call.png'></img></td><td><img src='images/group.png'></img></td><td><img src='images/adhan-call.png'></img></td><td><img src='images/group.png'></img></td></tr>";
     //console.log(pts)
     let newday = '';
     
@@ -90,3 +91,4 @@
     console.log(err);
   });
 
+<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
