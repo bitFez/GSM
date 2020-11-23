@@ -1,5 +1,7 @@
-
-  detay = "http://www.londonprayertimes.com/api/times/?format=json&year=2020&month=November&key=2faaa5a2-496f-485c-aa26-af5c30a83adb"
+  api_key = '2faaa5a2-496f-485c-aa26-af5c30a83adb';
+  this_year = '2020';
+  this_month = 'November';
+  detay = "http://www.londonprayertimes.com/api/times/?format=json&year="+this_year+"&month="+this_month+"&key="+api_key
   fetch(detay)
   .then(function (response){
       return response.json();
