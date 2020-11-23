@@ -14,7 +14,7 @@ fetch(detay)
   var today = new Date();
   var today_date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   //console.log(today_date);
-  console.log();
+  //console.log();
   
   var tmonth = new Array(12);
   tmonth[0] = "January";
