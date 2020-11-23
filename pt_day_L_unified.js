@@ -2,6 +2,22 @@
 //Daily times
 const todays_d = new Date()
 //console.log("date: "+ todays_d)
+fetch('http://api.aladhan.com/v1/timingsByCity?city=London&country=United%20Kingdom&method=3&school=1')
+.then(function (response) {
+  return response.json();
+})
+.then(function (data1) {
+  //appendData(data);
+  hijri_cal = data1['data']['timings']
+  // gregorian
+  dateg = data1['data']['date']['readable']
+  hij_d = data1['data']['date']['hijri']['day']
+  hij_m = data1['data']['date']['hijri']['month']['en']
+  hij_y = data1['data']['date']['hijri']['year']
+  hijri_date = hij_d + " " + hij_m + " " + hij_y
+  document.getElementById('hijri_date').innerHTML = hijri_date;
+  document.getElementById('gregorian_date').innerHTML = dateg;
+})
 
 fetch('http://www.londonprayertimes.com/api/times/?format=json&key=2faaa5a2-496f-485c-aa26-af5c30a83adb')
 .then(function (response) {
@@ -31,7 +47,7 @@ fetch('http://www.londonprayertimes.com/api/times/?format=json&key=2faaa5a2-496f
   document.getElementById('T_maghrib_j').innerHTML = maghrib_j;
   document.getElementById('T_Isha').innerHTML = pts.isha;
   isha = pts.isha;
-  isha_j  = moment.utc(isha,'hh:mm').add(15,'minutes').format('HH:mm');
+  isha_j  = pts.isha_jamat;
   document.getElementById('T_isha_j').innerHTML = isha_j;
   // gregorian
   //dateg = data['data']['date']['readable']
